@@ -31,13 +31,17 @@ docker build -t resource-lock-api .
 1. Run the Docker container:
 
 ```sh
-docker run --rm -p 8000:8080 resource-lock-api
+docker run --rm -p 8080:8080 resource-lock-api
 ```
 
 2. Access the API documentation:
 
-- Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Redoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- Swagger UI: [http://localhost:8080/docs](http://localhost:8000/docs)
+- Redoc: [http://localhost:8080/redoc](http://localhost:8000/redoc)
+
+3. Access the online version deployed with ci/cd: 
+- Swagger UI: https://my-app-yftkbunxyq-uc.a.run.app/docs(https://my-app-yftkbunxyq-uc.a.run.app/docs)
+- Redoc: https://my-app-yftkbunxyq-uc.a.run.app/redoc(https://my-app-yftkbunxyq-uc.a.run.app/redoc)
 
 ## API
 
