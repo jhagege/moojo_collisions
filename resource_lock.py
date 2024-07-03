@@ -1,5 +1,6 @@
 from typing import List, Tuple, Dict, Optional
 
+
 class ResourceLock:
     def __init__(self):
         self.locks: Dict[str, List[Tuple[int, int]]] = {}
