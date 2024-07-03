@@ -36,6 +36,9 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT }}
 
+    - name: Configure Docker for GCR
+      run: gcloud auth configure-docker
+
     - name: Push Docker Image to GCP
       run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/resource-lock-api:$GITHUB_SHA
 
