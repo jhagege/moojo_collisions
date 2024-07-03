@@ -40,8 +40,8 @@ docker run --rm -p 8080:8080 resource-lock-api
 - Redoc: [http://localhost:8080/redoc](http://localhost:8000/redoc)
 
 3. Access the online version deployed with ci/cd: 
-- Swagger UI: https://my-app-yftkbunxyq-uc.a.run.app/docs(https://my-app-yftkbunxyq-uc.a.run.app/docs)
-- Redoc: https://my-app-yftkbunxyq-uc.a.run.app/redoc(https://my-app-yftkbunxyq-uc.a.run.app/redoc)
+- Swagger UI: [https://my-app-yftkbunxyq-uc.a.run.app/docs](https://my-app-yftkbunxyq-uc.a.run.app/docs)
+- Redoc: [https://my-app-yftkbunxyq-uc.a.run.app/redoc](https://my-app-yftkbunxyq-uc.a.run.app/redoc)
 
 ## API
 
