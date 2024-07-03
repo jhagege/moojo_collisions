@@ -1,17 +1,30 @@
-name: Deploy to Cloud Run
+name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  ci_cd_pipeline:
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: docker build -t resource-lock-api .
+
+    - name: Run tests inside Docker
+      run: docker run --rm resource-lock-api pytest
+
+    - name: Lint with flake8 inside Docker
+      run: docker run --rm resource-lock-api flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Tag Docker Image for GCP
+      run: docker tag resource-lock-api gcr.io/${{ secrets.GCP_PROJECT }}/resource-lock-api:$GITHUB_SHA
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1

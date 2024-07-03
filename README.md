@@ -31,7 +31,7 @@ docker build -t resource-lock-api .
 1. Run the Docker container:
 
 ```sh
-docker run --rm -p 8000:80 resource-lock-api
+docker run --rm -p 8000:8080 resource-lock-api
 ```
 
 2. Access the API documentation:
