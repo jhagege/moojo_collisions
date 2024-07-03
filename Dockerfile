@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 EXPOSE 80
 
-CMD ["./entrypoint.sh"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
 
 # docker build -t resource-lock-test .
-# docker run --rm resource-lock-test
+# docker run -it --rm resource-lock-test
