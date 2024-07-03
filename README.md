@@ -78,6 +78,7 @@ rl = ResourceLock()
 rl.add_lock("a", 1500, 1600)
 rl.add_lock("a", 1800, 1900)
 rl.add_lock("b", 1700, 3000)
+rl.add_lock("a", 1550, 1650)  # Adding a collision for testing
 ```
 
 ### Finding the First Collision
