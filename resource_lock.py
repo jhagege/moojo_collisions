@@ -7,9 +7,15 @@ class ResourceLock:
 
     def add_lock(self, resource_id: str, start_time: int, end_time: int):
         if resource_id not in self.locks:
-            self.locks[resource_id] = []
-        self.locks[resource_id].append((start_time, end_time))
-        self.locks[resource_id].sort()  # Keep intervals sorted by start_time
+            self.locks[resource_id] = [(start_time, end_time)]
+            return
+
+        intervals = self.locks[resource_id]
+        # Find the correct position to insert the new interval to keep the list sorted
+        i = 0
+        while i < len(intervals) and intervals[i][0] < start_time:
+            i += 1
+        intervals.insert(i, (start_time, end_time))
 
     def find_first_collision(self, resource_id: str) -> Optional[Tuple[int, int]]:
         intervals = self.locks.get(resource_id, [])
