@@ -31,7 +31,7 @@ docker build -t resource-lock-api .
 1. Run the Docker container:
 
 ```sh
-docker run --rm -p 8080:8080 resource-lock-api
+docker run -it --rm -p 8080:8080 resource-lock-api
 ```
 
 2. Access the API documentation:
@@ -114,7 +114,7 @@ print(collisions)  # Output: [((1500, 1600), (1550, 1650))]
 The tests are written using the `pytest` framework. To run the tests, use the following command:
 
 ```sh
-docker run --rm resource-lock-api
+docker run --rm resource-lock-api pytest
 ```
 
 ## License
