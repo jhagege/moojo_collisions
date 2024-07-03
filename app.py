@@ -4,6 +4,12 @@ from pydantic import BaseModel
 from resource_lock import ResourceLock
 
 
+class Lock(BaseModel):
+    resource_id: str
+    start_time: int
+    end_time: int
+
+
 class ResourceLockAPI:
     def __init__(self):
         self.app = FastAPI()
@@ -40,12 +46,6 @@ class ResourceLockAPI:
 
     def get_resource_lock(self):
         return self.resource_lock
-
-
-class Lock(BaseModel):
-    resource_id: str
-    start_time: int
-    end_time: int
 
 
 # Create an instance of the ResourceLockAPI
