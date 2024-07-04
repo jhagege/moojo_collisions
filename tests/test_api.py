@@ -6,15 +6,19 @@ from app import ResourceLockAPI
 
 @pytest.fixture(scope="module")
 def test_client():
-    # Initialize the resource lock state for tests
+    # Create the ResourceLockAPI instance
     test_resource_lock_api = ResourceLockAPI()
-    test_resource_lock_api.resource_lock.add_lock("a", 1500, 1600)
-    test_resource_lock_api.resource_lock.add_lock("a", 1800, 1900)
-    test_resource_lock_api.resource_lock.add_lock("b", 1700, 3000)
-    test_resource_lock_api.resource_lock.add_lock("a", 1550, 1650)  # Adding a collision for testing
 
     # Create a TestClient using the initialized app
     client = TestClient(test_resource_lock_api.app)
+
+    # Initialize the resource lock state using API calls
+    client.post("/add_lock", json={"resource_id": "a", "start_time": 1500, "end_time": 1600})
+    client.post("/add_lock", json={"resource_id": "a", "start_time": 1800, "end_time": 1900})
+    client.post("/add_lock", json={"resource_id": "b", "start_time": 1700, "end_time": 3000})
+    client.post("/add_lock",
+                json={"resource_id": "a", "start_time": 1550, "end_time": 1650})  # Adding a collision for testing
+
     yield client
 
 
