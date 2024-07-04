@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from resource_lock import ResourceLock
+from collision_detector.time_interval_collision_detector import CollisionDetector, IntervalConflictDetector
 
 
 class Lock(BaseModel):
@@ -9,8 +9,8 @@ class Lock(BaseModel):
     end_time: int
 
 
-class ResourceLockAPI:
-    def __init__(self, resource_lock: ResourceLock = ResourceLock()):
+class CollisionDetectorAPI:
+    def __init__(self, resource_lock: CollisionDetector = IntervalConflictDetector()):
         self.app = FastAPI()
         self.resource_lock = resource_lock
         self._setup_routes()
@@ -46,8 +46,8 @@ class ResourceLockAPI:
 
 # Instantiate the ResourceLock and pass it to ResourceLockAPI
 # Enables dependency injection, potentially mocking for testing etc.
-resource_lock_instance = ResourceLock()
-resource_lock_api = ResourceLockAPI(resource_lock_instance)
+collision_detector = IntervalConflictDetector()
+resource_lock_api = CollisionDetectorAPI(collision_detector)
 
 # Expose the FastAPI app instance
 app = resource_lock_api.app

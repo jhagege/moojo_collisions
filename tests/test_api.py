@@ -1,16 +1,16 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from app import ResourceLockAPI
+from app import CollisionDetectorAPI
 
 
 @pytest.fixture(scope="module")
 def test_client():
     # Create the ResourceLockAPI instance
-    test_resource_lock_api = ResourceLockAPI()
+    collision_detector_api = CollisionDetectorAPI()
 
     # Create a TestClient using the initialized app
-    client = TestClient(test_resource_lock_api.app)
+    client = TestClient(collision_detector_api.app)
 
     # Initialize the resource lock state using API calls
     client.post("/add_lock", json={"resource_id": "a", "start_time": 1500, "end_time": 1600})
