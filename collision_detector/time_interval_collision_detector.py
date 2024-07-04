@@ -11,11 +11,9 @@ class IntervalConflictDetector(CollisionDetector):
 
     def add_lock(self, resource_id: str, start_time: int, end_time: int):
         if resource_id not in self.locks:
-            self.locks[resource_id] = [(start_time, end_time)]
-        else:
-            intervals = self.locks[resource_id]
-            i = bisect.bisect_left(intervals, (start_time, end_time))
-            intervals.insert(i, (start_time, end_time))
+            self.locks[resource_id] = []
+        # Use bisect to find the correct insertion point to keep the list sorted
+        bisect.insort(self.locks[resource_id], (start_time, end_time))
 
     def find_first_collision(self, resource_id: str) -> Optional[Tuple[int, int]]:
         intervals = self.locks.get(resource_id, [])
